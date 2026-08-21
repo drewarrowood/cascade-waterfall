@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
 import { CascadeEngine } from "@/lib/waterfall/engine";
 import { useCascade } from "@/lib/waterfall/store";
+import { snapshotScene } from "@/lib/studio/snapshot";
 
 export function WaterfallCanvas() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -44,6 +45,7 @@ export function WaterfallCanvas() {
       if (e.key === "m" || e.key === "M") store.toggleMute();
       if (e.key === "r" || e.key === "R") store.randomize();
       if (e.key === "g" || e.key === "G") store.reshuffle();
+      if (e.key === "s" || e.key === "S") void openSnapshotStudio();
       if (e.key === "[" || e.key === "]") {
         const next = store.params.timeOfDay + (e.key === "]" ? 0.5 : -0.5);
         store.setParam("timeOfDay", (next + 24) % 24);
@@ -57,22 +59,14 @@ export function WaterfallCanvas() {
     <canvas
       ref={canvasRef}
       className="absolute inset-0 size-full touch-none"
+      data-cascade-scene
       aria-label="Living waterfall scene"
     />
   );
 }
 
-export async function captureFalls() {
-  const canvas = document.querySelector("canvas");
-  if (!(canvas instanceof HTMLCanvasElement)) return;
-  const blob = await new Promise<Blob | null>((resolve) =>
-    canvas.toBlob(resolve, "image/png"),
-  );
-  if (!blob) return;
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement("a");
-  a.href = url;
-  a.download = `cascade-${Date.now()}.png`;
-  a.click();
-  URL.revokeObjectURL(url);
+export async function openSnapshotStudio() {
+  const scene = await snapshotScene();
+  if (!scene) return;
+  useCascade.getState().openStudio(scene);
 }

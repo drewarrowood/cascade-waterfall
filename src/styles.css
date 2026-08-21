@@ -51,6 +51,29 @@
   p {
     text-wrap: pretty;
   }
+
+  .studio-shimmer {
+    background-image: linear-gradient(
+      90deg,
+      color-mix(in oklab, var(--color-muted) 55%, transparent) 0%,
+      var(--color-fg) 50%,
+      color-mix(in oklab, var(--color-muted) 55%, transparent) 100%
+    );
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: studio-shimmer 1.4s linear infinite;
+  }
+}
+
+@keyframes studio-shimmer {
+  from {
+    background-position: 100% 0;
+  }
+  to {
+    background-position: -100% 0;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

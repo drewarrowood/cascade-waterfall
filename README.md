@@ -22,7 +22,7 @@ Presets: Yosemite, Golden Hour, Iceland, Hidden Shrine, Autumn Veil, Moonwell, M
 - Drag **Flow**, **Width**, and **Drop** until the fall feels right
 - Sweep **Time** from dawn to night
 - Hit **Iceland** or **Moonwell**, then **Random**
-- **Save** captures the canvas as a PNG
+- **Snapshot** opens the studio: keep the still, or paint it as Van Gogh or Klimt
 
 ## Keys
 
@@ -31,6 +31,7 @@ Presets: Yosemite, Golden Hour, Iceland, Hidden Shrine, Autumn Veil, Moonwell, M
 | `M` | Mute |
 | `R` | Randomize climate |
 | `G` | New gorge (new seed, same climate) |
+| `S` | Snapshot / studio |
 | `[` / `]` | Nudge the hour |
 
 ## Run locally
@@ -42,4 +43,4 @@ npm run dev
 
 ## Stack
 
-React, TanStack Start, Tailwind, Canvas 2D, Web Audio.
+React, TanStack Start, Tailwind, Canvas 2D, Web Audio. Snapshot painting uses xAI Imagine.

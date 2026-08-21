@@ -24,7 +24,7 @@ import {
 import { PRESETS } from "@/lib/waterfall/presets";
 import { useCascade } from "@/lib/waterfall/store";
 import type { Params } from "@/lib/waterfall/types";
-import { captureFalls } from "@/components/waterfall-canvas";
+import { openSnapshotStudio } from "@/components/waterfall-canvas";
 
 function Row({
   label,
@@ -214,9 +214,9 @@ function Actions() {
       <Button variant="ghost" size="sm" onClick={reshuffle}>
         New gorge
       </Button>
-      <Button variant="ghost" size="sm" onClick={() => void captureFalls()}>
+      <Button variant="ghost" size="sm" onClick={() => void openSnapshotStudio()}>
         <Camera />
-        Save
+        Snapshot
       </Button>
       <Button variant="ghost" size="sm" onClick={reset}>
         Reset
@@ -267,6 +267,14 @@ export function MobileChrome() {
           </p>
         </div>
         <div className="flex gap-1.5">
+          <Button
+            variant="secondary"
+            size="icon-sm"
+            aria-label="Snapshot"
+            onClick={() => void openSnapshotStudio()}
+          >
+            <Camera />
+          </Button>
           <Button
             variant="secondary"
             size="icon-sm"

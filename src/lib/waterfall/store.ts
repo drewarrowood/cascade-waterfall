@@ -30,6 +30,7 @@ export interface CascadeState {
   entered: boolean;
   panelOpen: boolean;
   presetId: string | null;
+  studioScene: string | null;
   setParam: <K extends keyof Params>(key: K, value: Params[K]) => void;
   setParams: (params: Params) => void;
   applyPreset: (id: string) => void;
@@ -40,6 +41,8 @@ export interface CascadeState {
   setMuted: (muted: boolean) => void;
   enter: () => void;
   setPanelOpen: (open: boolean) => void;
+  openStudio: (scene: string) => void;
+  closeStudio: () => void;
   hydrate: () => void;
 }
 
@@ -49,6 +52,7 @@ export const useCascade = create<CascadeState>((set, get) => ({
   entered: false,
   panelOpen: false,
   presetId: "golden",
+  studioScene: null,
   setParam: (key, value) => {
     const params = { ...get().params, [key]: value };
     set({ params, presetId: null });
@@ -93,6 +97,8 @@ export const useCascade = create<CascadeState>((set, get) => ({
   },
   enter: () => set({ entered: true }),
   setPanelOpen: (panelOpen) => set({ panelOpen }),
+  openStudio: (scene) => set({ studioScene: scene, panelOpen: false }),
+  closeStudio: () => set({ studioScene: null }),
   hydrate: () => {
     const saved = readSaved();
     if (!saved) return;
