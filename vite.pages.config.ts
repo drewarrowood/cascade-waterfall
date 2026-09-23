@@ -5,7 +5,7 @@ import tailwindcss from "@tailwindcss/vite";
 
 export default defineConfig({
   root: "pages",
-  base: "/cascade-waterfall/",
+  base: "./",
   publicDir: resolve(import.meta.dirname, "public"),
   plugins: [tailwindcss(), viteReact()],
   resolve: {

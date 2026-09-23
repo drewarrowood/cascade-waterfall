@@ -2,7 +2,6 @@ import { StrictMode, useEffect } from "react";
 import { createRoot } from "react-dom/client";
 import { DesktopPanel, MobileChrome } from "@/components/control-panel";
 import { IntroGate } from "@/components/intro-gate";
-import { StudioModal } from "@/components/studio-modal";
 import { WaterfallCanvas } from "@/components/waterfall-canvas";
 import { useCascade } from "@/lib/waterfall/store";
 import "../src/styles.css";
@@ -20,7 +19,6 @@ function Home() {
         <MobileChrome />
       </div>
       <DesktopPanel />
-      <StudioModal />
     </main>
   );
 }
